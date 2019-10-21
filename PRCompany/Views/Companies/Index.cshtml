@@ -1,0 +1,38 @@
+﻿@model CompanyListViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1 class="display-4">Companies</h1>
+
+<table class="table">
+    <thead class="bg-dark text-light">
+    <th>@Html.DisplayNameFor(modelItem => Model.Company.CompanyName)</th>
+    </thead>
+    @foreach (var item in Model.Companies)
+    {
+        <tr>
+            <td>@item.CompanyName</td>
+        </tr>
+    }
+
+</table>
+
+@*make it beautiful please*@ 
+<div class="row no-gutters no-gutters">
+    @foreach (var item in Model.Companies)
+    {
+        <div class="card col-4 m-1">
+            <img src="@item.CompanyImg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@item.CompanyName</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    }
+</div>
+
+
