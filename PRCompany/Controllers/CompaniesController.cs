@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PRCompany.Models;
 using PRCompany.ViewModel;
+using PRCompany.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,18 @@ namespace PRCompany.Controllers
             return View(comanyListViewModel);
         }
 
-        [Authorize]
-        public void Create()
+        //[Authorize]
+        
+        public IActionResult Create()
         {
+            CompanyViewModel companyViewModel = new CompanyViewModel();
+            return View(companyViewModel);
+        }
 
+        [HttpPost]
+        public IActionResult Create(Company company)
+        {
+            return View();
         }
     }
 }
