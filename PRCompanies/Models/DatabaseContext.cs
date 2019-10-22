@@ -15,7 +15,7 @@ namespace PRCompanies.Models
 
         }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Account { get; set; }
         public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
         public DbSet<Overview> Overviews { get; set; }
         public DbSet<Review> Reviews { get; set; }

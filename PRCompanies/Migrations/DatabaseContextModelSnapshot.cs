@@ -180,6 +180,26 @@ namespace PRCompanies.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PRCompanies.Models.Account", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountName")
+                        .IsRequired();
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Account");
+                });
+
             modelBuilder.Entity("PRCompanies.Models.C_PL", b =>
                 {
                     b.Property<int>("Id")
@@ -204,6 +224,8 @@ namespace PRCompanies.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccountId");
 
                     b.Property<string>("Address")
                         .IsRequired();
@@ -276,6 +298,8 @@ namespace PRCompanies.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AccountId");
+
                     b.Property<string>("Comment")
                         .IsRequired();
 
@@ -286,35 +310,13 @@ namespace PRCompanies.Migrations
                     b.Property<string>("Suggest")
                         .IsRequired();
 
-                    b.Property<int>("UserId");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("PRCompanies.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Password")
-                        .IsRequired();
-
-                    b.Property<string>("Username")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -385,14 +387,14 @@ namespace PRCompanies.Migrations
 
             modelBuilder.Entity("PRCompanies.Models.Review", b =>
                 {
+                    b.HasOne("PRCompanies.Models.Account", "Account")
+                        .WithMany("Reviews")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("PRCompanies.Models.Company", "Company")
                         .WithMany("Reviews")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PRCompanies.Models.User", "User")
-                        .WithMany("Reviews")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

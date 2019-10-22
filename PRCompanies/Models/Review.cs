@@ -10,8 +10,8 @@ namespace PRCompanies.Models
     {
         public int Id { get; set; }
         [Required]
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public int AccountId { get; set; }
+        public Account Account { get; set; }
         [Required]
         public int CompanyId { get; set; }
         public Company Company { get; set; }

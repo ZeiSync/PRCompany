@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PRCompanies.Models
 {
-    public class User
+    public class Account
     {
         public int Id { get; set; }
         [Required]
-        public string Username { get; set; }
+        public string AccountName { get; set; }
         [Required, EmailAddress]
         public string Email { get; set; }
         [Required]

@@ -25,6 +25,8 @@ namespace PRCompanies.Models
         public string PhoneNumber    { get; set; }
         [Url]
         public string Website { get; set; }
+        [Required]
+        public int AccountId { get; set; }
 
         public IEnumerable<C_PL> C_PLs { get; set; }
         public Overview Overview { get; set; }
